@@ -6,13 +6,15 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarColor02">
       <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">Proveedores
-            <span class="visually-hidden">(current)</span>
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+          <a class="nav-link" [routerLink]="['/']">Proveedores
+            <span class="visually-hidden" *ngIf="router.isActive('/', true)"> (current) </span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/productos']">Productos</a>
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+          <a class="nav-link" [routerLink]="['/productos']">Productos
+            <span class="visually-hidden" *ngIf="router.isActive('/productos', true)"> (current) </span>
+          </a>
         </li>
       </ul>
     </div>

@@ -7,7 +7,7 @@ import { AddEditProductComponent } from './components/add-edit-product/add-edit-
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavbarComponent, AddEditProductComponent  , RouterModule],
+  imports: [RouterOutlet, NavbarComponent , RouterModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

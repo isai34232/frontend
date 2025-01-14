@@ -26,6 +26,7 @@ export class ListProveedoresComponent implements OnInit{
   obtenerProveedores(): void {
     this.proveedorService.getProveedores().subscribe({
         next: (data) => {
+
           this.proveedores = data;
           this.loading = false;
         },
@@ -40,7 +41,7 @@ export class ListProveedoresComponent implements OnInit{
     this.proveedorService.deleteProveedor(id).subscribe({
       next: () => {
       this.obtenerProveedores();
-      this.toastr.warning('El producto fue eliminado con exito', 'Producto eliminado');
+      this.toastr.warning('El proveedor fue eliminado con exito', 'Producto eliminado');
       },
       error: (err) => console.error('Error eliminando proveedor:', err)
     });

@@ -1,5 +1,8 @@
 <div class="container">
-  <h4>Listado de productos</h4>
+  <div class="title">
+    <h4>Listado de productos</h4>
+    <button type="button" class="btn btn-success" routerLink='/addProducto' routerLinkActive="router-link-active" >Agregar productos</button>
+  </div>
   <table class="table table-dark">
     <thead>
       <tr>
@@ -14,18 +17,23 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="table-light">
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+
+      <tr *ngFor="let producto of productos; trackBy: trackById" class="table-light">
+
+        <td>{{producto.nombre}}</td>
+        <td>{{producto.descripcion}}</td>
+        <td>{{producto.categoria.nombre}}</td>
+        <td>{{producto.proveedor.nombre}}</td>
+        <td>{{producto.precioCompra}}</td>
+        <td>{{producto.precioVenta}}</td>
+        <td>{{producto.stock}}</td>
         <td>
-          <button class="btn btn-primary">Editar</button>
-          <button class="btn btn-danger">Eliminar</button>
+          <button class="btn btn-primary" routerLink="/editProducto/{{producto.idProducto}}">Editar</button>
+          <button class="mt-1 btn btn-danger" (click)="deleteProduct(producto.idProducto!)">Eliminar</button>
         </td>
+      </tr>
+      <tr *ngIf="productos.length === 0">
+        <td colspan="8" class="text-center">No hay productos disponibles</td>
       </tr>
     </tbody>
   </table>

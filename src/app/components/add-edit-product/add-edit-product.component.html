@@ -1,12 +1,72 @@
-<div class="row mt-2">
-<div class="col-lg-4 offset-lg-4">
-  <div class="card border-success mb-3" style="max-width: 25rem;">
-    <div class="card-header text-center">Agregar producto</div>
+<app-progress-bar *ngIf="loading"></app-progress-bar>
+
+<div class="mt-3" style="display: flex; justify-content: center;">
+  <div class="card border-success mb-3" style="width: 35rem;">
+    <div class="card-header text-center">{{operacion}} producto</div>
     <div class="card-body">
-       <form action="">
-          <input type="text" class="form-control" placeholder="Ingrese el nombre">
+       <form [formGroup]="form" (ngSubmit)="addProducto()">
+          <input formControlName="nombre" type="text" class="form-control" placeholder="Ingrese el nombre">
+          <div class="alert alert-dismissible alert-primary" *ngIf="form.get('nombre')?.hasError('required') && form.get('nombre')?.touched">
+            <strong>El campo nombre es requerido</strong>
+          </div>
+          <input formControlName="stock" type="number" class="form-control mt-2" placeholder="stock">
+          <div class="alert alert-dismissible alert-primary" *ngIf="form.get('stock')?.hasError('required') && form.get('stock')?.touched">
+            <strong>El campo stock es requerido</strong>
+          </div>
+
+          <div style="display: flex; gap: 1rem">
+            <input formControlName="precioCompra" type="number" class="form-control mt-2" placeholder="Precio de compra">
+            <br>
+            <input formControlName="precioVenta" type="number" class="form-control mt-2" placeholder="Precio de venta">
+          </div>
+
+          <div class="alert alert-dismissible alert-primary" *ngIf="form.get('precioCompra')?.hasError('required') && form.get('precioCompra')?.touched">
+            <strong>El campo precio de compra es requerido</strong>
+          </div>
+
+          <div class="alert alert-dismissible alert-danger" *ngIf="form.get('precioCompra')?.hasError('pattern') && form.get('precioCompra')?.touched">
+            <strong>El campo precio de compra debe ser un número válido</strong>
+          </div>
+
+          <div class="alert alert-dismissible alert-primary" *ngIf="form.get('precioVenta')?.hasError('required') && form.get('precioVenta')?.touched">
+            <strong>El campo precio de venta es requerido</strong>
+          </div>
+
+          <div class="alert alert-dismissible alert-danger" *ngIf="form.get('precioVenta')?.hasError('pattern') && form.get('precioVenta')?.touched">
+            <strong>El campo precio de venta debe ser un número válido</strong>
+          </div>
+          <label for="exampleTextarea" class="form-label mt-2">Ingrese descripción</label>
+          <textarea formControlName="descripcion" class="form-control" id="exampleTextarea" rows="3" style="height: 116px;"></textarea>
+          <div class="alert alert-dismissible alert-primary" *ngIf="form.get('descripcion')?.hasError('required') && form.get('descripcion')?.touched">
+            <strong>El campo descripción es requerido</strong>
+          </div>
+          <label for="exampleSelect1" class="form-label mt-2">Seleccionar una categoria</label>
+          <select class="form-select" id="exampleSelect1" formControlName="categoria">
+            <option *ngFor="let categoria of categorias" [value]=categoria.idCategoria>
+              {{ categoria.nombre }}
+            </option>
+          </select>
+          <div class="alert alert-dismissible alert-primary" *ngIf="form.get('categoria')?.hasError('required') && form.get('categoria')?.touched">
+            <strong>El campo categoria es requerido</strong>
+          </div>
+          <label for="exampleSelect2" class="form-label mt-2">Seleccionar un proveedor</label>
+          <select class="form-select" id="exampleSelect2" formControlName="proveedor">
+            <option *ngFor="let proveedor of proveedores" [value]=proveedor.id_proveedor>
+              {{ proveedor.nombre }}
+            </option>
+          </select>
+          <div class="alert alert-dismissible alert-primary" *ngIf="form.get('proveedor')?.hasError('required') && form.get('proveedor')?.touched">
+            <strong>El campo proveedor es requerido</strong>
+          </div>
+          <div class="row mt-3">
+            <div class="col-lg-6">
+              <button routerLink="/productos" type="button" class="btn btn-light">Regresar</button>
+            </div>
+            <div class="col-lg-6">
+              <button [disabled]="form.invalid" type="submit" class="btn btn-dark">Aceptar</button>
+            </div>
+          </div>
        </form>
     </div>
   </div>
-</div>
 </div>
