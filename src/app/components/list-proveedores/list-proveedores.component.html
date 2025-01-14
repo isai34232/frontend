@@ -7,7 +7,6 @@
   <table class="table table-dark">
     <thead>
       <tr>
-        <th scope="col">ID Proveedor</th>
         <th scope="col">Nombre</th>
         <th scope="col">Teléfono</th>
         <th scope="col">Email</th>
@@ -17,7 +16,6 @@
     <tbody>
       @for (proveedor of proveedores; track proveedor.id_proveedor) {
         <tr class="table-light">
-          <td>{{proveedor.id_proveedor}}</td>
           <td>{{proveedor.nombre}}</td>
           <td>{{proveedor.telefono}}</td>
           <td>{{proveedor.email}}</td>
