@@ -1,0 +1,36 @@
+<app-progress-bar *ngIf="loading"></app-progress-bar>
+<div class="mt-3" style="display: flex; justify-content: center;">
+    <div class="card border-success mb-3" style="max-width: 25rem;">
+      <div class="card-header text-center">{{operacion}} proveedores</div>
+      <div class="card-body">
+         <form [formGroup]="form" (ngSubmit)="addProveedor()">
+            <input formControlName="nombre" type="text" class="form-control" placeholder="Ingrese el nombre">
+            <span *ngIf="form.get('nombre')?.hasError('required') && form.get('nombre')?.touched">
+              El campo nombre es requerido
+            </span>
+            <input formControlName="telefono" type="text" class="form-control mt-2" placeholder="Ingrese el telefono">
+            <span *ngIf="form.get('telefono')?.hasError('required') && form.get('telefono')?.touched">
+              El campo telefono es requerido
+            </span>
+            <span *ngIf="form.get('telefono')?.hasError('maxlength') && form.get('telefono')?.touched">
+              El teléfono debe tener exactamente 10 caracteres.
+            </span>
+            <input formControlName="email" type="email" class="form-control mt-2" placeholder="Ingrese el email">
+            <span *ngIf="form.get('email')?.hasError('required') && form.get('email')?.touched ">
+              El campo email es requerido
+            </span>
+            <span *ngIf="form.get('email')?.hasError('email') && !form.get('email')?.hasError('required')">
+              El formato del email no es válido
+            </span>
+            <div class="row mt-3">
+              <div class="col-lg-6">
+                <button routerLink="/" type="button" class="btn btn-light">Regresar</button>
+              </div>
+              <div class="col-lg-6">
+                <button [disabled]="form.invalid" type="submit" class="btn btn-dark">Aceptar</button>
+              </div>
+            </div>
+         </form>
+      </div>
+    </div>
+</div>
