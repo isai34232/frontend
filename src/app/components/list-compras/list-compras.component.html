@@ -1,0 +1,16 @@
+<div class="container mt-1">
+<h3>Ordenes de compra</h3>
+<div class="row row-cols-1 row-cols-md-4 g-4">
+  <div *ngFor="let orden of ordenes; trackBy: trackById" class="col">
+    <div class="card text-white bg-secondary  mb-3" style="display: flex;">
+      <div class="card-body table-light">
+        <p><strong>Proveedor:</strong> {{ orden.proveedor.nombre }}</p>
+        <p><strong>Producto:</strong> {{ orden.producto.nombre }}</p>
+        <p><strong>Precio Unitario:</strong> {{ orden.precioUnitario | currency }}</p>
+        <p><strong>Fecha de Entrega:</strong> {{ orden.fechaEntrega | date }}</p>
+        <p><strong>Cantidad:</strong> {{ orden.cantidad }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

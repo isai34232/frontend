@@ -40,4 +40,14 @@ export class ProductService {
     return this.http.post<any>(`${this.apiURL}/productos/${id}/movimiento`, null, { params });
   }
 
+  compra(id: number, cantidad: number, idProveedor: number, total: number): Observable<any> {
+    const params = new HttpParams()
+      .set('cantidad', cantidad.toString())
+      .set('idProveedor', idProveedor.toString())
+      .set('total', total.toString());
+
+    return this.http.post<any>(`${this.apiURL}/productos/${id}/comprar`, null, { params });
+  }
+
+
 }

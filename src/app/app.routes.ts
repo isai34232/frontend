@@ -5,6 +5,10 @@ import { ListProveedoresComponent } from './components/list-proveedores/list-pro
 import { AddEditProductComponent } from './components/add-edit-product/add-edit-product.component';
 import { AddEditProveedoresComponent } from './components/add-edit-proveedores/add-edit-proveedores.component';
 import { ListProductsComponent } from './components/list-products/list-products.component';
+import { ComprarComponent } from './components/comprar/comprar.component';
+import { ListMovimientosComponent } from './components/list-movimientos/list-movimientos.component';
+import { ListComprasComponent } from './components/list-compras/list-compras.component';
+
 
 
 
@@ -16,5 +20,9 @@ export const routes: Routes = [
   { path: 'addProveedores', component: AddEditProveedoresComponent},
   { path: 'editP/:id', component: AddEditProveedoresComponent},
   { path: 'venderD/:id', component: VenderDevolucionComponent},
+  { path: 'comprar/:id', component: ComprarComponent},
+  { path: 'movimientos', component: ListMovimientosComponent},
+  { path: 'ordenes', component: ListComprasComponent},
+
   { path: '**', redirectTo: '', pathMatch:'full'},
 ];

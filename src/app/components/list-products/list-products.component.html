@@ -31,6 +31,7 @@
           <button class="btn btn-primary" routerLink="/editProducto/{{producto.idProducto}}">Editar</button>
           <button class="mt-1 btn btn-danger" (click)="deleteProduct(producto.idProducto!)">Eliminar</button>
           <button class="mt-1 btn btn-dark" routerLink="/venderD/{{producto.idProducto}}">Vender/Devolucion</button>
+          <button class="mt-1 btn btn-success" routerLink="/comprar/{{producto.idProducto}}">Comprar</button>
         </td>
       </tr>
       <tr *ngIf="productos.length === 0">

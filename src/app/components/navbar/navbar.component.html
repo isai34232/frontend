@@ -16,6 +16,18 @@
             <span class="visually-hidden" *ngIf="router.isActive('/productos', true)"> (current) </span>
           </a>
         </li>
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+          <a class="nav-link" [routerLink]="['/movimientos']">Movimientos
+            <span class="visually-hidden" *ngIf="router.isActive('/movimientos', true)"> (current) </span>
+          </a>
+        </li>
+
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+          <a class="nav-link" [routerLink]="['/ordenes']">Compras
+            <span class="visually-hidden" *ngIf="router.isActive('/ordenes', true)"> (current) </span>
+          </a>
+        </li>
+
       </ul>
     </div>
   </div>
