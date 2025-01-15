@@ -1,9 +1,12 @@
+import { VenderDevolucionComponent } from './components/vender-devolucion/vender-devolucion.component';
 import { Component } from '@angular/core';
 import { Routes } from '@angular/router';
 import { ListProveedoresComponent } from './components/list-proveedores/list-proveedores.component';
 import { AddEditProductComponent } from './components/add-edit-product/add-edit-product.component';
 import { AddEditProveedoresComponent } from './components/add-edit-proveedores/add-edit-proveedores.component';
 import { ListProductsComponent } from './components/list-products/list-products.component';
+
+
 
 export const routes: Routes = [
   {path: '', component: ListProveedoresComponent},
@@ -12,5 +15,6 @@ export const routes: Routes = [
   { path: 'editProducto/:id', component: AddEditProductComponent},
   { path: 'addProveedores', component: AddEditProveedoresComponent},
   { path: 'editP/:id', component: AddEditProveedoresComponent},
+  { path: 'venderD/:id', component: VenderDevolucionComponent},
   { path: '**', redirectTo: '', pathMatch:'full'},
 ];

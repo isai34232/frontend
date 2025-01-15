@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from '../interfaces/product';
@@ -8,7 +8,7 @@ import { Product } from '../interfaces/product';
 })
 export class ProductService {
 
-  private apiURL = 'http://localhost:8080/api'
+  private apiURL = 'https://inventario-nhtz.onrender.com/api'
 
   constructor(private http:HttpClient) { }
 
@@ -30,6 +30,14 @@ export class ProductService {
 
   updateProduct(id: number, product: Product): Observable<Product> {
     return this.http.put<Product>(`${this.apiURL}/productos/${id}`, product);
+  }
+
+  movimiento(id: number, cantidad: number, tipo: string): Observable<any> {
+    const params = new HttpParams()
+      .set('cantidad', cantidad)
+      .set('tipo', tipo);
+
+    return this.http.post<any>(`${this.apiURL}/productos/${id}/movimiento`, null, { params });
   }
 
 }

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CategoriaService {
-  private apiURL = 'http://localhost:8080/api'
+  private apiURL = 'https://inventario-nhtz.onrender.com/api'
 
   constructor(private http:HttpClient) { }
 

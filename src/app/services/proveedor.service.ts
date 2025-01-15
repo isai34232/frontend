@@ -9,7 +9,7 @@ import { Proveedor } from '../interfaces/proveedor';
 })
 export class ProveedorService {
 
-  private apiURL = 'http://localhost:8080/api/proveedores';
+  private apiURL = 'https://inventario-nhtz.onrender.com/api/proveedores';
 
   constructor(private http: HttpClient) { }
 
