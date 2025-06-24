@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class OrdenesService {
-  private apiURL = 'https://inventario-nhtz.onrender.com/api'
+  private apiURL = 'https://back-wqa2.onrender.com/api'
 
   constructor(private http:HttpClient) { }
 
