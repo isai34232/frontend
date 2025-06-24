@@ -3,3 +3,27 @@
   display: flex;
   justify-content: space-between;
 }
+/* Cambiar color del título */
+.title h4 {
+  color: #ff5733; /* Naranja */
+}
+
+/* Cambiar color de los botones */
+.title button {
+  color: white;
+}
+
+/* Cambiar color de las cabeceras de la tabla */
+.table-dark thead th {
+  color: #00ffff; /* Cyan */
+}
+
+/* Cambiar color de las celdas del cuerpo de la tabla */
+.table-light td {
+  color: #333333; /* Gris oscuro */
+}
+
+/* Cambiar color del texto cuando no hay proveedores */
+.text-center {
+  color: red;
+}
