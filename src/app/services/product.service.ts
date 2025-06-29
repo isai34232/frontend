@@ -24,6 +24,14 @@ export class ProductService {
     return this.http.post<Product>(`${this.apiURL}/productos`, product);
   }
 
+  updateProductWithImage(id: number, formData: FormData) {
+ return this.http.post(`${this.apiURL}/productos`, formData);
+
+} 
+saveProductWithImage(formData: FormData) {
+  return this.http.post(`${this.apiURL}/productos`, formData);
+}
+
   getProduct(id: number): Observable<any> {
     return this.http.get<any>(`${this.apiURL}/productos/${id}`);
   }

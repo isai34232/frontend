@@ -1,24 +1,86 @@
-/* Cambiar color del título */
+/* Estilo general del título */
 .title h4 {
-  color: #ff5733; /* Naranja */
+  color: #ff5733;
+  font-weight: bold;
 }
 
-/* Cambiar color de los botones */
+/* Botón de agregar */
 .title button {
   color: white;
+  background-color: #28a745;
+  border: none;
+  padding: 6px 12px;
+  font-size: 0.875rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease-in-out;
 }
 
-/* Cambiar color de las cabeceras de la tabla */
+.title button:hover {
+  background-color: #218838;
+}
+
+/* Cabecera de la tabla */
 .table-dark thead th {
-  color: #00ffff; /* Cyan */
+  color: #00ffff;
 }
 
-/* Cambiar color de las celdas del cuerpo de la tabla */
+/* Celdas de tabla */
 .table-light td {
-  color: #333333; /* Gris oscuro */
+  color: #333333;
 }
 
-/* Cambiar color del texto cuando no hay proveedores */
+/* Texto cuando no hay datos */
 .text-center {
   color: red;
+}
+
+/* 🎨 Tarjetas de movimientos */
+.card {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+/* Cabecera de la tarjeta */
+.card-header {
+  font-size: 1rem;
+  font-weight: bold;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  color: white;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+/* Cuerpo de la tarjeta */
+.card-body {
+  background-color: #f8f9fa;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  color: #333;
+  padding: 15px;
+}
+
+/* Etiquetas en negrita */
+.card-body strong {
+  color: #007bff;
+}
+
+/* Botones PDF */
+.btn-success, .btn-warning {
+  font-size: 0.9rem;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}
+
+.btn-warning:hover {
+  background-color: #e0a800;
 }

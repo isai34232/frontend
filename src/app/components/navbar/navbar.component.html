@@ -1,33 +1,31 @@
-<nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-gradient-custom shadow-sm sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Inventario</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand fw-bold" href="#">📦 Inventario</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="toggleNavbar()"
+      [attr.aria-expanded]="!isCollapsed"
+      aria-controls="navbarNav"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarColor02">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-          <a class="nav-link" [routerLink]="['/']">Proveedores
-            <span class="visually-hidden" *ngIf="router.isActive('/', true)"> (current) </span>
-          </a>
-        </li>
-        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-          <a class="nav-link" [routerLink]="['/productos']">Productos
-            <span class="visually-hidden" *ngIf="router.isActive('/productos', true)"> (current) </span>
-          </a>
-        </li>
-        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-          <a class="nav-link" [routerLink]="['/movimientos']">Movimientos
-            <span class="visually-hidden" *ngIf="router.isActive('/movimientos', true)"> (current) </span>
-          </a>
-        </li>
 
+    <div [ngClass]="{ 'collapse': isCollapsed, 'navbar-collapse': true, 'show': !isCollapsed }" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
         <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
-          <a class="nav-link" [routerLink]="['/ordenes']">Compras
-            <span class="visually-hidden" *ngIf="router.isActive('/ordenes', true)"> (current) </span>
-          </a>
+          <a class="nav-link px-3" [routerLink]="['/']" (click)="closeNavbar()">Proveedores</a>
         </li>
-
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+          <a class="nav-link px-3" [routerLink]="['/productos']" (click)="closeNavbar()">Productos</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+          <a class="nav-link px-3" [routerLink]="['/movimientos']" (click)="closeNavbar()">Movimientos</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+          <a class="nav-link px-3" [routerLink]="['/ordenes']" (click)="closeNavbar()">Compras</a>
+        </li>
       </ul>
     </div>
   </div>

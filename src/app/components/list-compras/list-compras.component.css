@@ -1,0 +1,30 @@
+.card {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card-header {
+  font-size: 1rem;
+  font-weight: bold;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  color: white;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.card-body {
+  background-color: #f8f9fa;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  color: #333;
+  padding: 15px;
+}
+
+.card-body strong {
+  color: #007bff;
+}

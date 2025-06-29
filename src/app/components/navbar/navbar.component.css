@@ -1,0 +1,33 @@
+/* Gradiente bonito en el fondo del navbar */
+.bg-gradient-custom {
+  background: linear-gradient(90deg, #0d47a1, #1976d2);
+}
+
+
+.navbar .nav-link {
+  color: #ffffff;
+  transition: color 0.3s, background-color 0.3s;
+  border-radius: 5px;
+}
+
+.navbar .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #e0f7fa;
+}
+
+
+.navbar .nav-item.active .nav-link {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #ffeb3b;
+  font-weight: bold;
+}
+
+
+.navbar-brand {
+  font-size: 1.3rem;
+}
+
+
+.navbar-nav .nav-link {
+  padding: 0.5rem 1rem;
+}

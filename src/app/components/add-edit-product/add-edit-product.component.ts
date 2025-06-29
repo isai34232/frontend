@@ -23,6 +23,9 @@ export class AddEditProductComponent implements OnInit{
   loading: boolean = false;
   id: number;
   operacion: string = 'Agregar';
+  selectedImage: File | null = null;
+  imagenError: string = '';
+
 
 
 
@@ -49,6 +52,22 @@ export class AddEditProductComponent implements OnInit{
       this.getProducto(this.id)
     }
   }
+
+
+  onFileSelected(event: Event) {
+  const input = event.target as HTMLInputElement;
+  if (input.files && input.files[0]) {
+    const file = input.files[0];
+    if (file.size > 2 * 1024 * 1024) { // 2MB
+      this.imagenError = 'La imagen no debe superar los 2MB.';
+      this.selectedImage = null;
+    } else {
+      this.imagenError = '';
+      this.selectedImage = file;
+    }
+  }
+}
+
 
   obtenerProveedores(): void {
     this.loading = true;
@@ -107,6 +126,44 @@ export class AddEditProductComponent implements OnInit{
     });
   }
 
+addProducto() {
+  const producto: Product = {
+    nombre: this.form.value.nombre,
+    descripcion: this.form.value.descripcion,
+    idCategoria: Number(this.form.value.categoria),
+    id_proveedor: Number(this.form.value.proveedor),
+    precioCompra: this.form.value.precioCompra,
+    precioVenta: this.form.value.precioVenta,
+    stock: this.form.value.stock
+  };
+
+  const formData = new FormData();
+  formData.append('producto', new Blob([JSON.stringify(producto)], { type: 'application/json' }));
+
+  if (this.selectedImage) {
+    formData.append('imagen', this.selectedImage);
+  }
+
+  this.loading = true;
+
+  if (this.id != 0) {
+    producto.id_producto = this.id;
+    this.productoService.updateProductWithImage(this.id, formData).subscribe(() => {
+      this.toastr.info(`El producto ${producto.nombre} fue actualizado con éxito`, 'Producto actualizado');
+      this.loading = false;
+      this.router.navigate(['/productos']);
+    });
+  } else {
+    this.productoService.saveProductWithImage(formData).subscribe(() => {
+      this.toastr.success(`El producto ${producto.nombre} fue agregado con éxito`, 'Producto agregado');
+      this.loading = false;
+      this.router.navigate(['/productos']);
+    });
+  }
+}
+
+
+/* funcion antigua 
   addProducto(){
     const producto: Product = {
       nombre: this.form.value.nombre,
@@ -134,6 +191,7 @@ export class AddEditProductComponent implements OnInit{
       })
     }
   }
+*/
 
   trackById(index: number, proveedor: any): number {
     return proveedor.id;
