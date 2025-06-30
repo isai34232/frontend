@@ -37,6 +37,7 @@ export class ListMovimientosComponent implements OnInit {
       },
       (error) => {
         console.error('Error al obtener las ordenes:', error);
+        window.location.reload();
       }
     );
   }

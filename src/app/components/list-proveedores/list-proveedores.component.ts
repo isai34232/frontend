@@ -43,8 +43,11 @@ export class ListProveedoresComponent implements OnInit{
       this.obtenerProveedores();
       this.toastr.warning('El proveedor fue eliminado con exito', 'Producto eliminado');
       },
-      error: (err) => console.error('Error eliminando proveedor:', err)
-    });
+      error: (err) => {
+                window.location.reload();
+        console.error('Error eliminando proveedor:', err)
+
+      }    });
 
   }
 }
