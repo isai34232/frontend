@@ -126,41 +126,74 @@ export class AddEditProductComponent implements OnInit{
     });
   }
 
-addProducto() {
-  const producto: Product = {
-    nombre: this.form.value.nombre,
-    descripcion: this.form.value.descripcion,
-    idCategoria: Number(this.form.value.categoria),
-    id_proveedor: Number(this.form.value.proveedor),
-    precioCompra: this.form.value.precioCompra,
-    precioVenta: this.form.value.precioVenta,
-    stock: this.form.value.stock
-  };
-
+uploadImageToImgur(file: File): Promise<string> {
   const formData = new FormData();
-  formData.append('producto', new Blob([JSON.stringify(producto)], { type: 'application/json' }));
+  formData.append('image', file); // clave correcta: 'image'
 
-  if (this.selectedImage) {
-    formData.append('imagen', this.selectedImage);
+  return fetch('https://api.imgur.com/3/image', {
+    method: 'POST',
+    headers: {
+      Authorization: 'Client-ID 858b24e00d8402d', // reemplaza esto
+    },
+    body: formData
+  })
+  .then(res => {
+    if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
+    return res.json();
+  })
+  .then(data => {
+    if (data.success) {
+      return data.data.link; // Devuelve URL pública
+    } else {
+      throw new Error('Error en la respuesta de Imgur');
+    }
+  });
+}
+
+
+async addProducto() {
+  if (this.form.invalid) {
+    this.toastr.error('Por favor llena todos los campos correctamente', 'Error');
+    return;
   }
 
   this.loading = true;
 
-  if (this.id != 0) {
-    producto.id_producto = this.id;
-    this.productoService.updateProductWithImage(this.id, formData).subscribe(() => {
+  let imageUrl = '';
+
+  try {
+    if (this.selectedImage) {
+        imageUrl = await this.uploadImageToImgur(this.selectedImage);
+    }
+
+    const producto: Product = {
+      nombre: this.form.value.nombre,
+      descripcion: this.form.value.descripcion,
+      idCategoria: Number(this.form.value.categoria),
+      id_proveedor: Number(this.form.value.proveedor),
+      precioCompra: this.form.value.precioCompra,
+      precioVenta: this.form.value.precioVenta,
+      stock: this.form.value.stock,
+      urlImagen: imageUrl  // <-- Aquí la url que obtuviste de Telegraph
+    };
+
+    if (this.id != 0) {
+      producto.id_producto = this.id;
+      await this.productoService.updateProduct(this.id, producto).toPromise();
       this.toastr.info(`El producto ${producto.nombre} fue actualizado con éxito`, 'Producto actualizado');
-      this.loading = false;
-      this.router.navigate(['/productos']);
-    });
-  } else {
-    this.productoService.saveProductWithImage(formData).subscribe(() => {
+    } else {
+      await this.productoService.saveProduct(producto).toPromise();
       this.toastr.success(`El producto ${producto.nombre} fue agregado con éxito`, 'Producto agregado');
-      this.loading = false;
-      this.router.navigate(['/productos']);
-    });
+    }
+
+    this.router.navigate(['/productos']);
+  } catch (error: any) {
+    this.toastr.error(error.message || 'Error al guardar el producto', 'Error');
+  } finally {
+    this.loading = false;
   }
 }
+
 
 
 /* funcion antigua 
