@@ -78,7 +78,7 @@ export class AddEditProductComponent implements OnInit{
           this.loading = false;
         },
         error: (error) => {
-          window.location.reload();
+  
           this.errorMessage = error.message;
           this.loading = false;
         }
@@ -121,7 +121,7 @@ export class AddEditProductComponent implements OnInit{
         this.loading = false;
       },
       error: (error) => {
-        window.location.reload();
+
         this.errorMessage = error.message;
         this.loading = false;
       }
