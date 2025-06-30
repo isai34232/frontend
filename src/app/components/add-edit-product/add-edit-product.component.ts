@@ -126,28 +126,17 @@ export class AddEditProductComponent implements OnInit{
     });
   }
 
-uploadImageToImgur(file: File): Promise<string> {
+async uploadImageToTelegraph(file: File): Promise<string> {
   const formData = new FormData();
-  formData.append('image', file); // clave correcta: 'image'
+  formData.append('file', file);
 
-  return fetch('https://api.imgur.com/3/image', {
+  const response = await fetch('https://telegra.ph/upload', {
     method: 'POST',
-    headers: {
-      Authorization: 'Client-ID 858b24e00d8402d', // reemplaza esto
-    },
     body: formData
-  })
-  .then(res => {
-    if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
-    return res.json();
-  })
-  .then(data => {
-    if (data.success) {
-      return data.data.link; // Devuelve URL pública
-    } else {
-      throw new Error('Error en la respuesta de Imgur');
-    }
   });
+
+  const data = await response.json();
+  return 'https://telegra.ph' + data[0].src;
 }
 
 
@@ -163,7 +152,7 @@ async addProducto() {
 
   try {
     if (this.selectedImage) {
-        imageUrl = await this.uploadImageToImgur(this.selectedImage);
+        imageUrl = await this.uploadImageToTelegraph(this.selectedImage);
     }
 
     const producto: Product = {
