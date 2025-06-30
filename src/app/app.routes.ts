@@ -23,6 +23,4 @@ export const routes: Routes = [
   { path: 'comprar/:id', component: ComprarComponent},
   { path: 'movimientos', component: ListMovimientosComponent},
   { path: 'ordenes', component: ListComprasComponent},
-
-  { path: '**', redirectTo: '', pathMatch:'full'},
 ];
