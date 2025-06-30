@@ -126,17 +126,17 @@ export class AddEditProductComponent implements OnInit{
     });
   }
 
-async uploadImageToTelegraph(file: File): Promise<string> {
+async uploadImageToImgbb(file: File): Promise<string> {
   const formData = new FormData();
-  formData.append('file', file);
+  formData.append('image', file);
 
-  const response = await fetch('https://telegra.ph/upload', {
+  const response = await fetch(`https://api.imgbb.com/1/upload?key=58091146e7413f8d670c5caf6c6e4b42`, {
     method: 'POST',
-    body: formData
+    body: formData,
   });
 
   const data = await response.json();
-  return 'https://telegra.ph' + data[0].src;
+  return data.data.url;
 }
 
 
@@ -152,9 +152,10 @@ async addProducto() {
 
   try {
     if (this.selectedImage) {
-        imageUrl = await this.uploadImageToTelegraph(this.selectedImage);
+        imageUrl = await this.uploadImageToImgbb(this.selectedImage);
     }
-
+    console.log("img")
+    console.log(imageUrl)
     const producto: Product = {
       nombre: this.form.value.nombre,
       descripcion: this.form.value.descripcion,
@@ -163,7 +164,7 @@ async addProducto() {
       precioCompra: this.form.value.precioCompra,
       precioVenta: this.form.value.precioVenta,
       stock: this.form.value.stock,
-      urlImagen: imageUrl  // <-- Aquí la url que obtuviste de Telegraph
+      urlImagen: imageUrl
     };
 
     if (this.id != 0) {
