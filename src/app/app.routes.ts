@@ -15,7 +15,7 @@ import { ListComprasComponent } from './components/list-compras/list-compras.com
 export const routes: Routes = [
   {path: '', component: ListProveedoresComponent},
   {path: 'productos', component: ListProductsComponent},
-  { path: 'addProducto', component: AddEditProductComponent},
+  { path: 'addproducto', component: AddEditProductComponent},
   { path: 'editProducto/:id', component: AddEditProductComponent},
   { path: 'addProveedores', component: AddEditProveedoresComponent},
   { path: 'editP/:id', component: AddEditProveedoresComponent},
@@ -23,4 +23,6 @@ export const routes: Routes = [
   { path: 'comprar/:id', component: ComprarComponent},
   { path: 'movimientos', component: ListMovimientosComponent},
   { path: 'ordenes', component: ListComprasComponent},
+
+  { path: '**', redirectTo: '', pathMatch:'full'},
 ];
