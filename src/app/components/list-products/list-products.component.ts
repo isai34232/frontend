@@ -30,6 +30,7 @@ export class ListProductsComponent implements OnInit {
         this.productos = data;
       },
       error: (error: HttpErrorResponse) => {
+        window.location.reload();
         this.errorMessage = error.message;
       }
     });
